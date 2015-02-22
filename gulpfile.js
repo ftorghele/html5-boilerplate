@@ -138,6 +138,9 @@ gulp.task('images', function() {
 });
 
 gulp.task('minify', function () {
+    var minifyInlineOptions = {
+        js: false
+    }
     return gulp.src(dirs.src + '/index.html')
         .pipe(plugins.usemin({
             css: [
@@ -146,7 +149,7 @@ gulp.task('minify', function () {
                 'concat'
             ],
             html: [
-                plugins.minifyInline(),
+                plugins.minifyInline(minifyInlineOptions),
                 plugins.minifyHtml({ empty: true }),
                 plugins.replace(/{{JQUERY_VERSION}}/g, pkg.devDependencies.jquery)
             ],
